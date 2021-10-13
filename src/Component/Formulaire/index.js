@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowCircleLeft} from 'react-icons/fa';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
+import NavFomule from '../navFomule';
 import './devis.css';
 
 
@@ -215,7 +215,7 @@ console.log('TOTAL',total )
     }
 console.log("THE INPUT",input);
 return(<div className="devis">
-
+<NavFomule/>
 <h1>Formule TRINKIL</h1>
 <div className="formule">
 

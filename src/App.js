@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
 import Devis from './Component/Formulaire';
+import Formulefinale from './Component/Formulaire/Formule';
+import NavFomule from './Component/navFomule';
 function App() {
   return (
     <div className="App">
@@ -23,7 +25,8 @@ function App() {
      </Route>
    <Route exact path="/depart">
    <div className="devis-wrap">
-     <Devis/>
+   <NavFomule/>
+     <Formulefinale/>
          </div>
    
      
