@@ -4,6 +4,7 @@ import { Button } from 'bootstrap';
 import { FaAddressCard, FaArrowCircleLeft, FaCalendar, FaCheck} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import Carton from '../Carton';
 import  {MDBInput}  from 'mdbreact';
 
 const Formulefinale=()=>{
@@ -244,7 +245,7 @@ Nous reviendrons vers vous avec un tarif dans un délai de 24h00 ouvrées. Pense
 <div className="calcul-montant">Total</div>
 </div>
 
-
+<Carton/>
     </div>)
 }
 export default Formulefinale;
