@@ -9,16 +9,17 @@
 }
 .text-calcul {
     font-size: 1vw;
-    width: 90%;
+    width: 70%;
     margin-bottom: 50px;
     margin-top: 50px;
+    
 }
 
 .wrap-formulaire{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 70%;
     height: auto;
     
    
@@ -26,7 +27,7 @@
 .calcul-bloc{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 70%;
     height: auto;
  
     background-color: white;
@@ -37,15 +38,36 @@
 .calcul-montant{
     display: flex;
     flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30%;
     height: auto;
-   
     background-color: white;
     border: 1px solid lightgray;
     border-radius: 5px 5px 5px 5px;
+    margin-left: 10px;
 
 }
+.calcul-montant p{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 90%;
+}
+.total-formulaire{
+width: 90%;
+height: 50px;
+border: 1px solid lightgray;
+border-radius: 5px 5px 5px 5px;
+display: flex;
 
+justify-content: space-between;
+align-items: center;
+margin-bottom: 50px;
+padding-left: 5px;
+padding-right: 5px;
+
+}
 .calcul-bloc-item{
     border-bottom: 1px solid lightgray;
     display: flex;
@@ -119,11 +141,12 @@ input{
 .btn-formule{
     background-color:#2c216f ;
     color: white;
-    font-size: 1em;
+    font-size: 15px;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border-radius: 5px 5px 5px 5px;
     width: 20%;
     cursor: pointer;
@@ -132,10 +155,10 @@ input{
     background-color:#514c74 ;
 }
 .width90{
-    width: 90%;
+    width: 70%;
     margin-top: 50px;
     margin-bottom: 50px;
-    font-size: 1.8em;
+    font-size: 1.7em;
 }
 .width90-2{
     width: 50%;
@@ -143,7 +166,7 @@ input{
     margin-bottom: 50px;  
 }
 .width90-2-center{
-    width: 90%;
+    width: 70%;
     display: flex;
 }
 .input-commantaires{

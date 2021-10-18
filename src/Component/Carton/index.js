@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import  './carton.css';
-import { FaArrowCircleLeft} from 'react-icons/fa';
+import { FaArrowCircleLeft, FaTrash} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-const Carton=()=>{
+const Carton=(props)=>{
+  const{showVolum}=props;
     const [input,setInput]=useState({
-        element:"hhh",
+        element:"",
         prix:"",
     })
     const [tab,setTab]=useState([]);
@@ -23,7 +24,10 @@ const handelClick=(event)=>{
 const handeladd=()=>{
     setTab([...tab,input])
 }
+const DeleteVolumeItem=(e)=>{
+tab.remove()
 
+}
 return(<div className="carton">
 <div className="calcul-carton">
 <div className="text-carton">
@@ -35,12 +39,22 @@ return(<div className="carton">
 <div className="btn-formule margin-top" onClick={handeladd}>Ajouter</div>
 
 <div className="add-box">
-    
+<input type="text" placeholder="EX: Carton..." onChange={handelClick} className="input-volum" name="element" value={input.element} />  
 {tab?.map((option) => (
-              <div >{option.element}11111</div>
+              <div className="element-volum" ><FaTrash className="icon-colum-item" onClick={()=>
+                
+                {
+
+                  const i= tab.indexOf(option)
+                  return(
+               tab[i].remove(),
+                    console.log(i)
+                  )
+                }
+               }/>{option.element}</div>
             ))}
 
-<input type="text" placeholder="item" onChange={handelClick} className="input-volum" name="element" value={input.element} />
+
 
 
 </div>
@@ -60,7 +74,7 @@ return(<div className="carton">
 <h3>Nombre de carton(s) : 0</h3>
 <h4>0.00m3</h4>
 <div className="btn-carton">Continue</div>
-<div className="btn-carton">Retour</div>
+<div className="btn-carton" onClick={showVolum}>Retour</div>
 </div>
 
     </div>)

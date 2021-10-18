@@ -38,6 +38,12 @@ const handelClickCkeck=()=>{
 
     setCirclestyle("in-circle")   
 }
+const [volum,setVolum]=useState(false);
+const showVolum=()=>{
+    setVolum(!volum)
+
+}
+/**************************************************************************************************************************************** */
 return(
 
     <div className="principal-formulaire">
@@ -119,15 +125,69 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
 
 
 
+<div className="calcul-bloc-item">
+    <div className="inter-calcul-item">
+    <h1>Arrivé</h1>
+<input type="text"  className="address-input"/>
+   <select className="select-ville">
+   {lieux.map((option) => (
+              <option  value={option.value}>{option.label}</option>
+            ))}
+   </select>
+    </div>
+    <div className="inter-calcul-item">
+<label className=" Myborder-top">
+<p className="title">ETAGE </p>
+<select >
+   {etage.map((option) => (
+              <option  value={option.value}>{option.label}</option>
+            ))}
+   </select>
+</label>
+<label className=" Myborder-top">
+<p className="title">ASCENSEUR</p>
+<select >
+   {assenseur.map((option) => (
+              <option  value={option.value}>{option.label}</option>
+            ))}
+   </select>
+</label>
+<label className=" Myborder-top">
+<p className="title">DISTANCE DE PORTAGE</p>
+<select >
+   {distance.map((option) => (
+              <option  value={option.value}>{option.label}</option>
+            ))}
+   </select>
+   <p className="title"><Link>Plus d'information</Link></p>
+</label>
+<label className=" Myborder-top">
+<p className="title">MONTE-MEUBLES</p>
+<select className="input-style "  type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt} onChange={handelChange} >
+<option label=""></option>
 
+<option label="Non">Non</option>
+<option label=" oui (7h)" value="450">Oui pour 7h</option>
+<option label=" oui (1/2j)"  value="250"   >Oui pour une demie journée</option>
+</select>
+<p className="title"><Link>Plus d'information</Link></p>
+</label>
+
+
+
+
+</div>
+<div className="inter-calcul-item">Avez-vous besoin d'une autorisation de stationnement ?</div>
+<div className="inter-calcul-item"><p className="title"><Link>Plus d'information</Link></p></div>
+</div>
 
 
 <div className="calcul-bloc-item">
 
 <div className="inter-calcul-item">Votre volume</div>
 
-Une bonne estimation du volume est un élément clé pour éviter les mauvaises surprises le jour J.
-Nos conseillers sont à votre disposition.
+<div className="inter-calcul-item">Une bonne estimation du volume est un élément clé pour éviter les mauvaises surprises le jour J.
+Nos conseillers sont à votre disposition.</div>
 <div className="inter-calcul-item ">
     <div className="volum-input"><FaCheck/> Volume renseigné manuellement
 <input type="number"/>
@@ -135,7 +195,7 @@ Nos conseillers sont à votre disposition.
 </div>
 <div className="inter-calcul-item">Le volume est un élément très important.
 Utilisez notre calculateur ou contactez-nous !
-<div className="btn-formule">calculateur de volume</div>
+<div className="btn-formule" onClick={showVolum}>calculateur de volume</div>
 </div>
 
 </div>
@@ -147,7 +207,11 @@ Utilisez notre calculateur ou contactez-nous !
 
 </div>
 <div className="calcul-montant">
-   Total:
+<p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
+
+  <div className="total-formulaire"><div>Total:</div>
+  <div>120 €</div>
+  </div> 
 </div>
 
 </div>
@@ -165,10 +229,10 @@ Utilisez notre calculateur ou contactez-nous !
 </div>
 
 </div>
-<div className="calcul-montant">2</div>
+<div className="calcul-montant"></div>
 </div>
 <p className="width90">Avez-vous besoin d'aide pour le démontage
-et le remontage de votre mobilier ?</p>
+et le remontage de<br/> votre mobilier ?</p>
 <div className="wrap-formulaire">
 <div className="calcul-bloc">
 <div className="calcul-bloc-item">
@@ -184,7 +248,14 @@ et le remontage de votre mobilier ?</p>
 
     
 </div>
-<div className="calcul-montant">2</div> 
+<div className="calcul-montant">
+<p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
+
+  <div className="total-formulaire"><div>Total:</div>
+  <div>120 €</div>
+  </div> 
+</div>
+
 </div>
 
 
@@ -202,7 +273,16 @@ et le remontage de votre mobilier ?</p>
     </div>   
     </div> 
 
-    <div className="calcul-montant">Total</div>   
+    <div className="calcul-montant">
+    <p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
+
+<div className="total-formulaire"><div>Total:</div>
+<div>120 €</div>
+</div> 
+
+        
+        
+        </div>   
 </div>
 
 <p className="width90">Options libres</p>
@@ -242,10 +322,10 @@ Nous reviendrons vers vous avec un tarif dans un délai de 24h00 ouvrées. Pense
 </div>
 </div>
 
-<div className="calcul-montant">Total</div>
+<div className="calcul-montant"></div>
 </div>
+{volum &&(<Carton showVolum={showVolum}/>)}
 
-<Carton/>
     </div>)
 }
 export default Formulefinale;
