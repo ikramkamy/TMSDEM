@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style-form-final.css';
 import { Button } from 'bootstrap';
 import { FaAddressCard, FaArrowCircleLeft, FaCalendar, FaCheck} from 'react-icons/fa';
@@ -6,26 +6,41 @@ import { Link } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import Carton from '../Carton';
 import  {MDBInput}  from 'mdbreact';
-
+import Ecommerce from '../Ecommerce';
 const Formulefinale=()=>{
-
+const[showecommerce,setShowecommerce]=useState(false);
+const[box1,setBox1]=useState(false);
+const[box2,setBox2]=useState(true)
+const handelecommerce=()=>{
+    setShowecommerce(!showecommerce)    
+}
+const handelCheck=()=>{
+    setBox1(true); 
+    setBox2(false)
+    setShowecommerce(true) 
+}
+const handelCheck2=()=>{
+    setBox2(true); 
+    setBox1(false)
+    setShowecommerce(false) 
+}
     /********************************************************************MY CONSTANTS****************************************************************** */
 const [lieux,setLieux]=useState([{label:"Ville",value:"Ville"}, {label:"Bordeaux",value:"Bordeaux"},
     {label:"Paris",value:"Paris"}]);
-const [etage,setEtage]=useState([{label:"RDC",value:"RDC"},{label:"1",value:"1"},{label:"2",value:"2"},{label:"3",value:"3"},{label:"4",value:"4"},
-{label:"5",value:"5"},{label:"6",value:"6"},{label:"Plus",value:"Plus"},
+const [etage,setEtage]=useState([{label:"RDC",value:"0"},{label:"1",value:"1"},{label:"2",value:"2"},{label:"3",value:"3"},{label:"4",value:"4"},
+{label:"5",value:"5"},{label:"6",value:"6"},{label:"7",value:"7"},{label:"8",value:"8"},{label:"9",value:"9"},{label:"10",value:"10"},{label:"Plus",value:"11"},
 
 ])
-const [assenseur,setAssenseur]=useState([{label:"1-2 personnes",value:"1-2 personnes"},{label:"2-3 personnes",value:"2-3 personnes"},
-{label:"3-4 personnes",value:"3-4 personnes"},{label:"4-5 personnes",value:"4-5 personnes"},
-{label:"5-6 personnes",value:"5-6 personnes"},{label:"6-7 personnes",value:"6-7 personnes"},{label:"7-8 personnes",value:"7-8 personnes"},
-{label:"Tout autre",value:"Tout autre"}])
+const [assenseur,setAssenseur]=useState([{label:"Non",value:"0"},{label:"1-2 personnes",value:"5"},{label:"2-3 personnes",value:"5"},
+{label:"3-4 personnes",value:"5"},{label:"4-5 personnes",value:"5"},
+{label:"5-6 personnes",value:"5"},{label:"6-7 personnes",value:"5"},{label:"7-8 personnes",value:"5"},
+{label:"Tout entre",value:"20"}])
 
-const[distance,Distance]=useState([{label:"0-10 m",value:"0-10 m"},
-{label:"10-20 m",value:"10-20 m"},{label:"20-30 m",value:"20-30 m"},{label:"30-40 m",value:"30-40 m"},
-{label:"40-50 m",value:"40-50 m"},{label:"50-60 m",value:"50-60 m"},{label:"60-70 m",value:"60-70 m"},
-{label:"90-100 m",value:"90-100 m"},
-{label:"plus de 101 m",value:"plus de 101 m"}])
+const[distance,Distance]=useState([{label:"0-10 m",value:"0"},
+{label:"10-20 m",value:"0"},{label:"20-30 m",value:"25"},{label:"30-40 m",value:"35"},
+{label:"40-50 m",value:"45m"},{label:"50-60 m",value:"55"},{label:"60-70 m",value:"65"},
+{label:"90-100 m",value:"95"},
+{label:"plus de 101 m",value:"100"}])
 const[input,setInput]=useState([]);
 
 /****************************************************************************************************************************************** */
@@ -43,10 +58,55 @@ const showVolum=()=>{
     setVolum(!volum)
 
 }
-/**************************************************************************************************************************************** */
+/****************************************************************DECLARATION DES VARIABLES N2CESSAIRE POUR LE CALCUL DE DEVIS******************************************************************************* */
+const [numetage,setNumetage]=useState(0);
+const [varetage,setVaretage]=useState([]);
+const [varchange,setVarchange]=useState(0)
+const [valassenseur,setValassenseur]=useState(0);
+const [valdistance,setValdistance]=useState(0);
+/********************************************************************Les fonction pour chaque variable******************************************************************** */
+const handelChangeall=(event)=>{
+    setNumetage(event.target.value);
+    setVaretage(event.target.label);
+    console.log("LAVE VALUE",varetage)
+    setVarchange(varchange+1);
+      }
+
+const handelChangeassens=(event)=>{
+   setValassenseur(event.target.value);
+   setVarchange(varchange+1); 
+}
+const handelvaldistance=(event)=>{
+    setValdistance(event.target.value)
+    setVarchange(varchange+1); 
+}
+console.log("Valdistance",(valdistance/10));
+
+/*****************************************************************************INPUT ********************************************************************************* */
+const [inputall,setInputall]=useState({
+numetage:0,
+
+
+
+})
+
+
+
+/************************************************************************************LA SOMME TOTALE****************************************************************************** */
+const [total,setTotal]=useState(120)
+useEffect(()=>{
+setTotal(120+Number(numetage)*(30-valassenseur)+((valdistance)%10)*40)
+},[varchange])
+
 return(
 
     <div className="principal-formulaire">
+<p>voir les variables et la formule:</p>
+
+etage:{numetage} 
+/********************************************** */
+total:{total}
+
         <div className="text-calcul">
 <h1>Votre projet de déménagement</h1>
 Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
@@ -80,7 +140,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
     <div className="inter-calcul-item">
 <label className=" Myborder-top">
 <p className="title">ETAGE </p>
-<select >
+<select  value={numetage}  name='numetage' onChange={handelChangeall}>
    {etage.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -88,7 +148,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
 </label>
 <label className=" Myborder-top">
 <p className="title">ASCENSEUR</p>
-<select >
+<select value={valassenseur} name="valassenseur" onChange={handelChangeassens}>
    {assenseur.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -96,7 +156,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
 </label>
 <label className=" Myborder-top">
 <p className="title">DISTANCE DE PORTAGE</p>
-<select >
+<select value={valdistance} name="valdistance"  onChange={ handelvaldistance} >
    {distance.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -105,7 +165,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
 </label>
 <label className=" Myborder-top">
 <p className="title">MONTE-MEUBLES</p>
-<select className="input-style "  type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt} onChange={handelChange} >
+<select className="input-style "  type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt}  >
 <option label=""></option>
 
 <option label="Non">Non</option>
@@ -154,7 +214,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
 </label>
 <label className=" Myborder-top">
 <p className="title">DISTANCE DE PORTAGE</p>
-<select >
+<select value={valdistance} name="valdistance" onChange={handelvaldistance} >
    {distance.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -267,10 +327,15 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="calcul-bloc-item">
 <div className="inter-calcul-item check-yes-no">
     
-<MDBInput label="oui" type="checkbox" id="checkbox1" />
-<MDBInput label="Non" type="checkbox" id="checkbox2" /> 
+<MDBInput label="oui" type="checkbox" id="checkbox1" checked={box1} onChange={handelCheck} />
+<MDBInput label="Non" type="checkbox" id="checkbox2" checked={box2} onChange={handelCheck2} /> 
 </div>
     </div>   
+    
+    
+    {showecommerce && (<Ecommerce/>)}
+    
+    
     </div> 
 
     <div className="calcul-montant">
