@@ -1,7 +1,7 @@
 *{
     font-family: 'Montserrat', sans-serif;
     font-size: 1.8em;
-    color:#414042 ;
+  
     font-weight: 500;
     font-size: 15px;
     }
@@ -13,6 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color:#414042 ;
 }
 .formule{
     width: 100%;

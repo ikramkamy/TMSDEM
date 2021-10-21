@@ -5,6 +5,7 @@ import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
 import Devis from './Component/Formulaire';
 import Formulefinale from './Component/Formulaire/Formule';
 import NavFomule from './Component/navFomule';
+import Ecommerce from './Component/Ecommerce';
 function App() {
   return (
     <div className="App">
@@ -32,7 +33,7 @@ function App() {
      
    </Route>
   l'autre formule
-   
+   <Route exact path="/E-commerce" component={Ecommerce} />
    
    
    
