@@ -148,10 +148,7 @@ margin-top: 20px;
     font-size: 1.3em;
     
 }
-.Myborder-top{
-    border-top: 1px hidden red;
-    padding: 2%;
-}
+
 .Myborder-top input ,select{
    
     width: 150px;

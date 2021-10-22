@@ -99,7 +99,7 @@ border-radius: 5px 5px 5px 5px;
 }
 .inter-calcul-item{
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -126,6 +126,10 @@ input{
 .title{
         font-size: 12px;
         margin-top: 10px;
+        height: 35px;
+        width: 100%;
+        color: turquoise;
+        border: 1px solid red;
 }
 .title a{
     font-size: 12px;
@@ -178,14 +182,25 @@ input{
  
     padding-left: 5%;
 }
-
-
+input{
+    border: 1px solid red;
+}
+select{
+    border: 1px solid red;
+    width: 100px;
+    border-radius: 5px 5px 5px 5px ;
+}
+.Myborder-top{
+    border-top: 1px hidden red;
+    padding: 2%;
+    background-color: yellow;
+    flex: 1;
+}
 /*****************************************RESPONSIVR*******************************************/
-@media screen and(max-width:1000px) {
+@media screen and (max-width:1000px) {
     .inter-calcul-item{
-
-        border: 1px solid red;
-        background-color: black;
+flex-direction: column;
     }
+   
     
 }

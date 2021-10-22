@@ -104,7 +104,7 @@ return(
 <p>voir les variables et la formule:</p>
 
 etage:{numetage} 
-/********************************************** */
+/***********************************************/
 total:{total}
 
         <div className="text-calcul">
@@ -137,7 +137,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
             ))}
    </select>
     </div>
-    <div className="inter-calcul-item">
+<div className="inter-calcul-item">
 <label className=" Myborder-top">
 <p className="title">ETAGE </p>
 <select  value={numetage}  name='numetage' onChange={handelChangeall}>
@@ -165,7 +165,7 @@ Choisissez maintenant vos options. Votre devis se recalcule automatiquement.
 </label>
 <label className=" Myborder-top">
 <p className="title">MONTE-MEUBLES</p>
-<select className="input-style "  type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt}  >
+<select   type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt}  >
 <option label=""></option>
 
 <option label="Non">Non</option>
