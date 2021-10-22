@@ -178,3 +178,14 @@ input{
  
     padding-left: 5%;
 }
+
+
+/*****************************************RESPONSIVR*******************************************/
+@media screen and(max-width:1000px) {
+    .inter-calcul-item{
+
+        border: 1px solid red;
+        background-color: black;
+    }
+    
+}
