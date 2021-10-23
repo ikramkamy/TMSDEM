@@ -31,12 +31,17 @@ tab.remove()
 return(<div className="carton">
 <div className="calcul-carton">
 <div className="text-carton">
+  <div>
 <h1>L'inventaire de votre déménagement</h1>
 <p>Listez vos meubles pièce par pièce.</p>
 
 <h4>Attention, ne pas oublier de compter le cabanon de jardin, la cave, le garage, le grenier et les cartons d'objets posés sur les meubles ou par terre !</h4>
+</div>
+{/*<div className="img-carton">
+<img src="/images/carton.png" className="img-carton-size"/>
+</div>*/}
 
-<div className="btn-formule margin-top" onClick={handeladd}>Ajouter</div>
+</div>
 
 <div className="add-box">
 <input type="text" placeholder="EX: Carton..." onChange={handelClick} className="input-volum" name="element" value={input.element} />  
@@ -53,15 +58,8 @@ return(<div className="carton">
                 }
                }/>{option.element}</div>
             ))}
-
-
-
-
 </div>
-</div>
-<div className="img-carton">
-<img src="/images/carton.png" className="img-carton-size"/>
-</div>
+<div className=" margin-top" onClick={handeladd}>Ajouter</div>
 
 </div>
 

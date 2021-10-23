@@ -79,15 +79,18 @@
        height: auto;
    }
    .nav-form-item{
-       width: 100%;
-       border: 1px solid white;
+       width: 95%;
+       border: 1px hidden white;
        height: fit-content;
        display: flex;
        justify-content: flex-start;
+       align-items: flex-start;
+       border: 1px hidden red;
+       margin-bottom: 5px;
    }
    .nav-inter-item{
        width: 100%;
-       border: 1px solid red;
+  
        display: flex;
        justify-content: flex-start;
    }

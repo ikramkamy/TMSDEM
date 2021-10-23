@@ -1,33 +1,31 @@
 .carton{
     height: auto;
-    width: 1200px;
+    width: 100%;
     background-color: white;
-    box-shadow: 5px 5px 5px 5px ;
-    position: sticky;
-    bottom: 70%;
-    left: 70px;
     display: flex;
     justify-content: space-around;
 }
 .calcul-carton{
     display: flex;
     justify-content: space-between;
-    width: 60%;
-    padding: 50px;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid red;
 }
 .img-carton-size{
-    height: 158px;
-    width: 233px;
+    height: 100px;
+    width: 100px;
 }
 .img-carton{
     width: fit-content;
 }
 .text-carton{
-    
-    width: 400px;
+    display: flex;
+    width: 100%;
 }
 .text-carton h1{
-font-size: 1.8em;
+font-size: 1.1em;
 }
 .text-carton p{
     font-size: 1.3em; 
@@ -47,9 +45,9 @@ font-size: 1.8em;
     background-color: rgb(243,243,243);
     border: 1px solid lightgray;
     border-radius: 5px 5px 5px 5px;
-    width: 20%;
+    width: 50%;
     height: fit-content;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;

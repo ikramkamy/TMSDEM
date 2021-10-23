@@ -27,8 +27,13 @@ return(<div className="wrap-nav">
 <span><FaPhone className="icon-nav-formule"/>+33123366699 </span>
 
 </div>
-<div className="nav-form-item"><FaUser className="icon-nav-formule"/></div>
-<div className="nav-form-item "><FaShoppingBag className="icon-nav-formule"/></div>
+<div className="nav-form-item">
+    
+    <FaUser className="icon-nav-formule"/>
+    </div>
+<div className="nav-form-item ">
+    <FaShoppingBag className="icon-nav-formule"/>
+    </div>
 </div>
     </div>)
 }
