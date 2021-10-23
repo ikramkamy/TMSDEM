@@ -44,8 +44,9 @@ const handelVolmanu=()=>{
 }
 const handeVolValue=(event)=>{
     setVol1(event.target.value); 
+    console.log("LA VALEUR DU VOLUM",vol1);
 }
-console.log("LA VALEUR DU VOLUM",vol1);
+
 const handeVolcalc=()=>{
     setVolcalc(true);
     setVolmanu(false);
@@ -104,11 +105,11 @@ const [valdistance,setValdistance]=useState(0);
 /********************************************************************Les fonction pour chaque variable******************************************************************** */
 const handelChangeall=(event)=>{
     setNumetage(event.target.value);
-    setVaretage(event.target.label);
-    console.log("LAVE VALUE",varetage)
+   
+
     setVarchange(varchange+1);
       }
-
+      console.log("LAVE VALUE",numetage)
 const handelChangeassens=(event)=>{
    setValassenseur(event.target.value);
    setVarchange(varchange+1); 
@@ -116,8 +117,9 @@ const handelChangeassens=(event)=>{
 const handelvaldistance=(event)=>{
     setValdistance(event.target.value)
     setVarchange(varchange+1); 
+    console.log("Valdistance",(valdistance));
 }
-console.log("Valdistance",(valdistance/10));
+
 
 /*****************************************************************************INPUT ********************************************************************************* */
 const [inputall,setInputall]=useState({
@@ -132,7 +134,7 @@ numetage:0,
 /************************************************************************************LA SOMME TOTALE****************************************************************************** */
 const [total,setTotal]=useState(120)
 useEffect(()=>{
-setTotal(120+Number(numetage)*(30-valassenseur)+((valdistance)%10)*40)
+setTotal(120+Number(numetage)*(30-valassenseur))
 },[varchange])
 /*************************************************VOIR LES OBJETS LOURD*******************************/
 const [lourd,setLourd]=useState(true);
@@ -149,16 +151,7 @@ const handelpiano=()=>{
 const handelfrigo=()=>{
     setFrigo(!frigo)
 }
-useEffect(()=>{
-if(piono==true){
-    setPianonum(200);
-    setVarchange(varchange+1);
-}else{
-    setPianonum(0)
-    setVarchange(varchange+1);
-}
 
-})
 /***************************************************************************************************/
 return(
 
@@ -543,18 +536,12 @@ Faites-nous part de tout ce qui est important pour vous. Ces informations seront
 
 <p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
 
-<div className="total-formulaire"><div>Total:</div>
+<div className="total-formulaire"><div>Total: {total} £</div>
 <div>120 €</div>
 </div> 
 <p>voir les variables et la formule:</p>
 
 etage:{numetage} 
-/***********************************************/
-total:{total}
-<p data-tip="hello world">Tooltip</p>
-<ReactTooltip/>
-<p data-tip="500£">Si vous habitez en ville il est possible que</p>
-<ReactTooltip/>
 
 </div>
 <footer className="footer-formulaire">©2021 TMSDEM</footer>
