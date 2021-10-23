@@ -51,6 +51,16 @@ const handeVolcalc=()=>{
     setVolcalc(true);
     setVolmanu(false);
 }
+/******************************************Autorisation de stationnement******************************************* */
+const [autoO,setAutoO]=useState(false);
+const [autoO2,setAutoO2]=useState(false);
+const handelauto=()=>{
+    setAutoO(!autoO)   
+}
+const handelauto2=()=>{
+    setAutoO2(!autoO2)   
+}
+
 /****************************************************************************************** */
 
 const handelecommerce=()=>{
@@ -78,11 +88,13 @@ const [assenseur,setAssenseur]=useState([{label:"Non",value:"0"},{label:"1-2 per
 {label:"5-6 personnes",value:"5"},{label:"6-7 personnes",value:"5"},{label:"7-8 personnes",value:"5"},
 {label:"Tout entre",value:"20"}])
 
-const[distance,Distance]=useState([{label:"0-10 m",value:"0"},
-{label:"10-20 m",value:"0"},{label:"20-30 m",value:"25"},{label:"30-40 m",value:"35"},
-{label:"40-50 m",value:"45m"},{label:"50-60 m",value:"55"},{label:"60-70 m",value:"65"},
-{label:"90-100 m",value:"95"},
-{label:"plus de 101 m",value:"100"}])
+const[distance,setDistance]=useState([{label:"0-10 m",value:"0"},
+{label:"10-20 m",value:"0"},{label:"20-30 m",value:"10"},{label:"30-40 m",value:"20"},
+{label:"40-50 m",value:"30"},{label:"50-60 m",value:"40"},{label:"60-70 m",value:"50"}
+,{label:"70-80 m",value:"80"}
+,{label:"80-90 m",value:"90"},
+{label:"90-100 m",value:"100"},
+{label:"plus de 101 m",value:"110"}])
 const[input,setInput]=useState([]);
 
 /****************************************************************************************************************************************** */
@@ -102,12 +114,12 @@ const [varetage,setVaretage]=useState([]);
 const [varchange,setVarchange]=useState(0)
 const [valassenseur,setValassenseur]=useState(0);
 const [valdistance,setValdistance]=useState(0);
+const [valdistancem,setValdistancem]=useState(0);
+const [mnt,setMnt]=useState(0);
 /********************************************************************Les fonction pour chaque variable******************************************************************** */
 const handelChangeall=(event)=>{
     setNumetage(event.target.value);
-   
-
-    setVarchange(varchange+1);
+   setVarchange(varchange+1);
       }
       console.log("LAVE VALUE",numetage)
 const handelChangeassens=(event)=>{
@@ -117,10 +129,19 @@ const handelChangeassens=(event)=>{
 const handelvaldistance=(event)=>{
     setValdistance(event.target.value)
     setVarchange(varchange+1); 
-    console.log("Valdistance",(valdistance));
+ let d=0;
+    d=Math.floor(valdistance/10)
+console.log("D",d)
+setValdistancem(d);
 }
 
+console.log("Valdistance",(valdistance));
 
+const handelMnt=(event)=>{
+setMnt(event.target.value);
+setVarchange(varchange+1);
+}
+console.log('MTN',mnt)
 /*****************************************************************************INPUT ********************************************************************************* */
 const [inputall,setInputall]=useState({
 numetage:0,
@@ -134,7 +155,7 @@ numetage:0,
 /************************************************************************************LA SOMME TOTALE****************************************************************************** */
 const [total,setTotal]=useState(120)
 useEffect(()=>{
-setTotal(120+Number(numetage)*(30-valassenseur))
+setTotal(120+Number(numetage)*(30-valassenseur)+Number(mnt)*1+Number((Math.floor(valdistance/10)*40)))
 },[varchange])
 /*************************************************VOIR LES OBJETS LOURD*******************************/
 const [lourd,setLourd]=useState(true);
@@ -206,7 +227,7 @@ return(
 <label className=" Myborder-top">
 <p className="title" >DISTANCE DE PORTAGE</p>
 
-<select value={valdistance} name="valdistance"  onChange={ handelvaldistance} >
+<select value={valdistance} name="valdistance"  onChange={handelvaldistance} >
    {distance.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -221,10 +242,8 @@ return(
 </label>
 <label className=" Myborder-top">
 <p className="title">MONTE-MEUBLES</p>
-<select   type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt}  >
-<option label=""></option>
-
-<option label="Non">Non</option>
+<select   type="number"  placeholder="Monte-meuble"  name="mnt" value={input.mnt} onChange={handelMnt}>
+<option label="Non" value="0">Non</option>
 <option label=" oui (7h)" value="450">Oui pour 7h</option>
 <option label=" oui (1/2j)"  value="250"   >Oui pour une demie journée</option>
 </select>
@@ -253,9 +272,9 @@ return(
 
 
 <div className="inter-calcul-item  check-yes-no">
-    
-<MDBInput label="oui" type="checkbox" id="autoo" />
-<MDBInput label="Non" type="checkbox" id="auton" />  
+ 
+<MDBInput label="oui" type="checkbox" id="autoo" checked={autoO} onChange={handelauto}/>
+<MDBInput label="Non" type="checkbox" id="auton" checked={!autoO} onChange={handelauto}/>  
  
     </div> 
 </div>
@@ -319,8 +338,8 @@ return(
 
 <div className="inter-calcul-item  check-yes-no">
     
-<MDBInput label="oui" type="checkbox" id="autoo2" />
-<MDBInput label="Non" type="checkbox" id="auton2" />  
+<MDBInput label="oui" type="checkbox" id="autoo2" checked={autoO2} onChange={handelauto2}/>
+<MDBInput label="Non" type="checkbox" id="auton2" checked={!autoO2} onChange={handelauto2}/>  
  
     </div> 
 
@@ -434,10 +453,10 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="inter-calcul-item ">
     
 
-<MDBInput label="Aucune aide" type="checkbox"  />  
-<MDBInput label="Démontage & remontage" type="checkbox"  />  
-<MDBInput label="Démontage seul" type="checkbox"  /> 
-<MDBInput label="Remontage seul" type="checkbox"/> 
+<MDBInput label="Aucune aide" type="checkbox"  checked={rmntgN} />  
+<MDBInput label="Démontage & remontage" type="checkbox"  checked={rmtgdmtg}/>  
+<MDBInput label="Démontage seul" type="checkbox"  checked={dementaged}/> 
+<MDBInput label="Remontage seul" type="checkbox" checked={remontager}/> 
     </div>   
     </div> 
 
@@ -536,13 +555,16 @@ Faites-nous part de tout ce qui est important pour vous. Ces informations seront
 
 <p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
 
-<div className="total-formulaire"><div>Total: {total} £</div>
-<div>120 €</div>
+<div className="total-formulaire">
+    <div>Total: {total} £</div>
+
 </div> 
 <p>voir les variables et la formule:</p>
 
-etage:{numetage} 
-
+etage:{numetage} <br/>
+la distace:{valdistance} <br/>
+le résultat de la division euclidienne:{Math.floor(valdistance/10)} <br/>
+le monte-meuble:{mnt}<br/>
 </div>
 <footer className="footer-formulaire">©2021 TMSDEM</footer>
     </div>)
