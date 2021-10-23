@@ -60,7 +60,65 @@ const handelauto=()=>{
 const handelauto2=()=>{
     setAutoO2(!autoO2)   
 }
+/*****************************************REMONTAGE DEMONTAGE************************************************* */
+const [rmntgN,setRmntgN]=useState(false);
+const [rmtgdmtg,setRmtgdmtg]=useState(false);
+const [dementaged,setDementaged]=useState(false);
+const [remontager,setRemontager]=useState(false)
+const [tarifRMNTG,setTarifRMNTG]=useState(1);
 
+const handelRMNT1=()=>{
+    setRmntgN(true); 
+    setRmtgdmtg(false);  
+    setDementaged(false);
+    setRemontager(false);
+    setShowrmntg(false) ;
+    setTarifRMNTG(1);
+    setVarchange(varchange+1);
+}
+const handelRMNT2=()=>{
+    setRmtgdmtg(true);
+    setRmntgN(false);
+    setDementaged(false);
+    setRemontager(false);
+    setShowrmntg(true) ;
+    setTarifRMNTG(2);
+    setVarchange(varchange+1);
+}
+const handelRMNT3=()=>{
+    setDementaged(true);
+    setRmtgdmtg(false); 
+    setRmntgN(false); 
+    setRemontager(false) ;
+    setShowrmntg(true) ;
+    setTarifRMNTG(1);
+    setVarchange(varchange+1);
+}
+const handelRMNT4=()=>{
+    setRemontager(true);
+    setRmtgdmtg(false);  
+    setDementaged(false); 
+    setRmntgN(false);
+    setShowrmntg(true) ;
+    setTarifRMNTG(1);
+    setVarchange(varchange+1);
+}
+const [showrmntg,setShowrmntg]=useState(false);
+const [simple,setSimple]=useState(0);
+const [moy,setMoy]=useState(0);
+const [complique,setComplique]=useState(0)
+const handesimple=(event)=>{
+    setSimple(event.target.value);
+    setVarchange(varchange+1);
+}
+const handelmoy=(event)=>{
+    setMoy(event.target.value);
+    setVarchange(varchange+1);
+}
+const handelComplique=(event)=>{
+setComplique(event.target.value);
+setVarchange(varchange+1);
+}
 /****************************************************************************************** */
 
 const handelecommerce=()=>{
@@ -155,7 +213,7 @@ numetage:0,
 /************************************************************************************LA SOMME TOTALE****************************************************************************** */
 const [total,setTotal]=useState(120)
 useEffect(()=>{
-setTotal(120+Number(numetage)*(30-valassenseur)+Number(mnt)*1+Number((Math.floor(valdistance/10)*40)))
+setTotal(120+Number(numetage)*(30-valassenseur)+Number(mnt)*1+Number((Math.floor(valdistance/10)*40))+(simple*40)*tarifRMNTG)
 },[varchange])
 /*************************************************VOIR LES OBJETS LOURD*******************************/
 const [lourd,setLourd]=useState(true);
@@ -453,12 +511,49 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="inter-calcul-item ">
     
 
-<MDBInput label="Aucune aide" type="checkbox"  checked={rmntgN} />  
-<MDBInput label="Démontage & remontage" type="checkbox"  checked={rmtgdmtg}/>  
-<MDBInput label="Démontage seul" type="checkbox"  checked={dementaged}/> 
-<MDBInput label="Remontage seul" type="checkbox" checked={remontager}/> 
+<MDBInput label="Aucune aide" type="checkbox"  checked={rmntgN}  onChange={handelRMNT1}/>  
+<MDBInput label="Démontage & remontage" type="checkbox"  checked={rmtgdmtg} onChange={handelRMNT2} />  
+<MDBInput label="Démontage seul" type="checkbox"  checked={dementaged} onChange={handelRMNT3}/> 
+<MDBInput label="Remontage seul" type="checkbox" checked={remontager} onChange={ handelRMNT4}  /> 
     </div>   
-    </div> 
+    
+    
+    
+  {showrmntg &&(
+    <div className="inter-calcul-item RMNTG ">
+
+<div className="title-RMNTG">Simple</div> 
+<div className="content-RMNTG">
+<div className="text-RMNTG">Bureau simple, commode de taille moyenne, étagère simple, lit simple, lit bébé, placard (décrochage), table...</div>
+<input className="input-RMNTG" name="simple" value={simple} onChange={handesimple}/>
+</div>
+
+    </div>
+)}  
+  {showrmntg &&(
+    <div className="inter-calcul-item RMNTG ">
+
+<div className="title-RMNTG">Moyen</div> 
+<div className="content-RMNTG">
+<div className="text-RMNTG">Armoire 2 portes, buffet plusieurs blocs, bureau d'angle, canapé, etagère, grande commode, lit mezzanine simple, living plusieurs blocs...</div>
+<input className="input-RMNTG" name={moy} value={moy} onChange={handelmoy}/>
+</div>
+
+    </div>
+)}  
+ {showrmntg &&(
+    <div className="inter-calcul-item RMNTG ">
+
+<div className="title-RMNTG">Compliquée</div> 
+<div className="content-RMNTG">
+<div className="text-RMNTG">Armoire 3 portes et plus, armoire pont, armoire lit, bibliothèque, buffet, bahut, grande, vitrine, lit mezzanine 2 personnes, lit combiné avec bureau, living, vaisselier</div>
+<input className="input-RMNTG" name={complique} value={complique} onChange={handelComplique}/>
+</div>
+
+    </div>
+)}     
+    
+</div> 
 
     
 </div>
@@ -565,6 +660,9 @@ etage:{numetage} <br/>
 la distace:{valdistance} <br/>
 le résultat de la division euclidienne:{Math.floor(valdistance/10)} <br/>
 le monte-meuble:{mnt}<br/>
+moy:{moy}<br/>
+simple:{simple}<br/>
+complique:{complique}<br/>
 </div>
 <footer className="footer-formulaire">©2021 TMSDEM</footer>
     </div>)

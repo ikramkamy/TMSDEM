@@ -115,8 +115,40 @@ width: 90%;
     padding-left: 5px;
     font-size: 12px;
     font-weight: 300;
-    
+   
 }
+
+/********************************************REMONTAGE DEMONTAGE***************************************/
+.RMNTG{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.title-RMNTG{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 100;
+}
+.content-RMNTG{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-RMNTG{
+    
+    width: 50px;
+    cursor: text;
+}
+.text-RMNTG{
+    width: 80%;
+    font-size: 15pax;
+    font-weight: 100;
+}
+
+
+
 /********************************STYLING BIG TITLES INSIDE CALCUL BLOC********************************/
 
 .tit-big-first{
