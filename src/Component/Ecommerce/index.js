@@ -142,26 +142,42 @@ const[produit3,setProduit3]=useState([
 ])
 
   
-
-
+const [cart,setCart]=useState([]);
+const add=(e)=>{
+  setCart(...{e})
+}
+console.log("CART",cart)
 return(<div className="wrap-ecommerce">
 <h1 className="product-titles">Pour le non-fragile</h1>
 <h3 className="product-titles">Vêtements, livres, ustensiles de cuisine</h3>
-<div className="carton-cathegorie-bloc">{produit.map((e)=><Item url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit.map((e)=><Item add={(()=>add(e))} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
 <div className="sepa-catégorie-cartons">JE SOUHAITE QUE LE DÉMÉNAGEUR EMBALLE MES CARTONS NON FRAGILES</div>
 
 <h1 className="product-titles">Pour le fragile</h1>
 <h3 className="product-titles">Vaisselle, bouteilles, bibelots.</h3>
-<div className="carton-cathegorie-bloc">{produit2.map((e)=><Item url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit2.map((e)=><Item add={(()=>add(e))}  url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
 <div className="sepa-catégorie-cartons">JE SOUHAITE QUE LE DÉMÉNAGEUR EMBALLE MES CARTONS FRAGILES</div>
 
 
 <h1 className="product-titles">Pour les vêtements sur cintre</h1>
-<div className="carton-cathegorie-bloc">{produit3.map((e)=><Item url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit3.map((e)=><Item  add={(()=>add(e))} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
 
 
 <h1 className="product-titles">Autres fournitures</h1>
-<div className="carton-cathegorie-bloc">{produit4.map((e)=><Item  url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit4.map((e)=><Item add={(()=>add(e))} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+    
+    <div className="cart">
+      La liste d'achat:
+      {/*cart?.map((e)=><div className="row">
+<div>{e.name}</div>
+<div>{e.quantite}</div>
+<div>{e.prix}</div>
+<div></div>
+
+</div>)*/}
+      
+       Mon panier</div>
+    
     </div>)
 }
 export default Ecommerce;
