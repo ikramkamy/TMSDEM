@@ -4,12 +4,12 @@ import { FaArrowCircleLeft, FaLock, FaMinus, FaPlus, FaTrash} from 'react-icons/
 import { Link } from 'react-router-dom';
 import Item from './ItemWrap';
 const Ecommerce=(props)=>{
-  
+  const [q1,setQ1]=useState(3);
   const[produit,setProduit]=useState([
 {name:"carton livre",
 prix:"20 £",
 dimmension:"35 x 27,5 x 30 cm",
-quantite:0,
+quantite:q1,
 description:"3 à 4 cartons par mètre linéaire de livres",
 url:"/images/cartonLivre.jpg"
 },
@@ -177,7 +177,7 @@ const plus=()=>{
 const minus=()=>{
   setQuantite(quantite-1)  
 }
-
+/********************************************La somme des cartons****************************************/
 return(<div className="wrap-ecommerce">
 <h1 className="product-titles">Pour le non-fragile</h1>
 <h3 className="product-titles">Vêtements, livres, ustensiles de cuisine</h3>

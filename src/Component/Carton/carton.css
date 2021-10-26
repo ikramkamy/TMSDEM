@@ -133,14 +133,14 @@ margin-bottom: 10px;
    
 }
 .icon-colum-item{
-    
+  color: #2c216f;  
 }
 .la-piéce-head{
     display: flex;
     width: 100%;
     justify-content: space-around;
     align-items: center;
-    border: 1px hidden blue;
+    border: 1px solid blue;
     margin-bottom: 10px;
     margin-top: 10px;
     

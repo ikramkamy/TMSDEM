@@ -134,7 +134,7 @@ const handelCheck2=()=>{
     setBox1(false)
     setShowecommerce(false) 
 }
-    /********************************************************************MY CONSTANTS****************************************************************** */
+    /*********************************************MY CONSTANTS****************************************************************** */
 const [lieux,setLieux]=useState([{label:"Ville",value:"Ville"}, {label:"Bordeaux",value:"Bordeaux"},
     {label:"Paris",value:"Paris"}]);
 const [etage,setEtage]=useState([{label:"RDC",value:"0"},{label:"1",value:"1"},{label:"2",value:"2"},{label:"3",value:"3"},{label:"4",value:"4"},
@@ -155,7 +155,7 @@ const[distance,setDistance]=useState([{label:"0-10 m",value:"0"},
 {label:"plus de 101 m",value:"110"}])
 const[input,setInput]=useState([]);
 
-/****************************************************************************************************************************************** */
+/********************************************************************************************************** */
 const handelChange=()=>{
      
 }
@@ -166,24 +166,39 @@ const handelClickCkeck=()=>{
     setCirclestyle("in-circle")   
 }
 
-/****************************************************************DECLARATION DES VARIABLES N2CESSAIRE POUR LE CALCUL DE DEVIS******************************************************************************* */
+/*******************************DECLARATION DES VARIABLES N2CESSAIRE POUR LE CALCUL DE DEVIS******************************************************************************* */
 const [numetage,setNumetage]=useState(0);
+const [numetage2,setNumetage2]=useState(0);
 const [varetage,setVaretage]=useState([]);
 const [varchange,setVarchange]=useState(0)
 const [valassenseur,setValassenseur]=useState(0);
+const [valassenseur2,setValassenseur2]=useState(0);
 const [valdistance,setValdistance]=useState(0);
+const [valdistance2,setValdistance2]=useState(0);
 const [valdistancem,setValdistancem]=useState(0);
+const [valdistancem2,setValdistancem2]=useState(0);
 const [mnt,setMnt]=useState(0);
-/********************************************************************Les fonction pour chaque variable******************************************************************** */
+const [mnt2,setMnt2]=useState(0);
+/********************************************Les fonction pour chaque variable******************************************************************** */
 const handelChangeall=(event)=>{
     setNumetage(event.target.value);
    setVarchange(varchange+1);
       }
-      console.log("LAVE VALUE",numetage)
+const handelChangeall2=(event)=>{
+        setNumetage2(event.target.value);
+       setVarchange(varchange+1);
+          }
+      console.log("LAVE VALUE",numetage);
+         /*********/
 const handelChangeassens=(event)=>{
    setValassenseur(event.target.value);
    setVarchange(varchange+1); 
 }
+const handelChangeassens2=(event)=>{
+    setValassenseur2(event.target.value);
+    setVarchange(varchange+1); 
+ }
+         /**********/
 const handelvaldistance=(event)=>{
     setValdistance(event.target.value)
     setVarchange(varchange+1); 
@@ -192,15 +207,27 @@ const handelvaldistance=(event)=>{
 console.log("D",d)
 setValdistancem(d);
 }
-
+const handelvaldistance2=(event)=>{
+    setValdistance2(event.target.value)
+    setVarchange(varchange+1); 
+ let d=0;
+    d=Math.floor(valdistance2/10)
+console.log("D",d)
+setValdistancem2(d);
+}
 console.log("Valdistance",(valdistance));
+/************/
 
 const handelMnt=(event)=>{
 setMnt(event.target.value);
 setVarchange(varchange+1);
 }
+const handelMnt2=(event)=>{
+    setMnt2(event.target.value);
+    setVarchange(varchange+1);
+    }
 console.log('MTN',mnt)
-/*****************************************************************************INPUT ********************************************************************************* */
+/*********************************************************INPUT ********************************************************************************* */
 const [inputall,setInputall]=useState({
 numetage:0,
 
@@ -208,10 +235,19 @@ numetage:0,
 
 })
 
-/************************************************************************************LA SOMME TOTALE****************************************************************************** */
+/*******************************************************LA SOMME TOTALE****************************************************************************** */
 const [total,setTotal]=useState(120)
 useEffect(()=>{
-setTotal(120+Number(numetage)*(30-valassenseur)+Number(mnt)*1+Number((Math.floor(valdistance/10)*40))+(simple*40)*tarifRMNTG+(moy*60)*tarifRMNTG+(complique*80)*tarifRMNTG)
+setTotal(120+Number(numetage)*
+(30-valassenseur)+
+Number(numetage2)*
+(30-valassenseur2)+
+Number(mnt)*1+
+Number(mnt2)*1+
+Number((Math.floor(valdistance/10)*40))+
+Number((Math.floor(valdistance2/10)*40))+
+(simple*40)*tarifRMNTG+(moy*60)*tarifRMNTG+
+(complique*80)*tarifRMNTG)
 },[varchange])
 /*************************************************VOIR LES OBJETS LOURD*******************************/
 const [lourd,setLourd]=useState(true);
@@ -231,28 +267,8 @@ const handelfrigo=()=>{
 
 /***************************************************************************************************/
 
-/*****************************************SCROLL*************************************/ 
-const [isVisible,setIsVisible]=useState(false)
-const listenToScroll = () => {
-    let heightToHideFrom = 50;
-    const winScroll = document.body.scrollTop || 
-        document.documentElement.scrollTop;
-       
-    if (winScroll > heightToHideFrom) { 
-        alert("we are hete");
-        const montant = document.querySelector(".calcul-montant");
-        montant.style.position="absolute" ; 
-       
-         setIsVisible(true);
-    } else {
-         setIsVisible(false);
-    }  
-  };
-  /*
-useEffect(()=>{
-    listenToScroll()   
-})
-*/
+
+
 /**************************************************calcult de cubage******************************************** */
 
 const[cubage,setCubage]=useState(0);
@@ -322,7 +338,7 @@ return(
             ))}
    </select>
    <p className="title " >
-    <Link to="/" className="tip-distance1">Plus d'information
+    <Link to="/depart" className="tip-distance1">Plus d'information
    <div className="tooltip-styling">
     Nombre de métres au RCD entre votre hall d'immeuble et l'emplacement de stationnement le plus proche pour le camion(accès facile, fond de cours,jardin à traverser,immeuble de résidence etc...
         </div>
@@ -331,7 +347,7 @@ return(
 </label>
 <label className=" Myborder-top">
 <p className="title">MONTE-MEUBLES</p>
-<select   type="number"  placeholder="Monte-meuble"  name="mnt" value={input.mnt} onChange={handelMnt}>
+<select   type="number"  placeholder="Monte-meuble"  name="mnt" value={mnt} onChange={handelMnt}>
 <option label="Non" value="0">Non</option>
 <option label=" oui (7h)" value="450">Oui pour 7h</option>
 <option label=" oui (1/2j)"  value="250"   >Oui pour une demie journée</option>
@@ -374,7 +390,7 @@ return(
     <div className="inter-calcul-item">
     <h1 className="principale-titles">Arrivé</h1>
 <input type="text"  className="address-input"/>
-   <select className="select-ville">
+   <select className="select-ville" >
    {lieux.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -383,7 +399,7 @@ return(
     <div className="inter-calcul-item">
 <label className=" Myborder-top">
 <p className="title">ETAGE </p>
-<select >
+<select value={numetage2}  name='numetage2' onChange={handelChangeall2}>
    {etage.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -391,7 +407,7 @@ return(
 </label>
 <label className=" Myborder-top">
 <p className="title">ASCENSEUR</p>
-<select >
+<select value={valassenseur2} name="valassenseur2" onChange={handelChangeassens2}>
    {assenseur.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
@@ -399,23 +415,34 @@ return(
 </label>
 <label className=" Myborder-top">
 <p className="title">DISTANCE DE PORTAGE</p>
-<select value={valdistance} name="valdistance" onChange={handelvaldistance} >
+<select value={valdistance2} name="valdistance2" onChange={handelvaldistance2} >
    {distance.map((option) => (
               <option  value={option.value}>{option.label}</option>
             ))}
    </select>
-   <p className="title"><Link>Plus d'information</Link></p>
+   <p className="title">
+       <Link to="/depart"  className="tip-distance1">Plus d'information
+       <div className="tooltip-styling">
+    Nombre de métres au RCD entre votre hall d'immeuble et l'emplacement de stationnement le plus proche pour le camion(accès facile, fond de cours,jardin à traverser,immeuble de résidence etc...
+        </div>
+       
+       </Link>
+   
+   </p>
 </label>
 <label className=" Myborder-top">
 <p className="title">MONTE-MEUBLES</p>
-<select  type="number"  placeholder="Ascenseur"  name="mnt" value={input.mnt} onChange={handelChange} >
-<option label=""></option>
-
-<option label="Non">Non</option>
+<select  type="number"  placeholder="Ascenseur"  name="mnt2" value={mnt2} onChange={handelMnt2} >
+<option label="Non" value="0">Non</option>
 <option label=" oui (7h)" value="450">Oui pour 7h</option>
 <option label=" oui (1/2j)"  value="250"   >Oui pour une demie journée</option>
 </select>
-<p className="title"><Link>Plus d'information</Link></p>
+<p className="title"><Link to="/depart" className="tip-mont-meuble1">Plus d'information
+<div className="tooltip-styling-monte-meuble1">
+     Lors du démenagement, il arrive parfois que l'absence d'ascensseur ou l'étroitesse de la cage d'escalier oblige à passer le mobilier par la fenetre avec un appreil de levage appelé Monte-meuble.
+        </div>
+        </Link>
+</p>
 </label>
 
 
@@ -423,7 +450,16 @@ return(
 
 </div>
 <div className="inter-calcul-item big-titles"><span className="tit-big-first">Avez-vous besoin d'une</span><span className="tit-big-second">autorisation de stationnement ?</span></div>
-<div className="inter-calcul-item"><p className="title"><Link>Plus d'information</Link></p></div>
+<div className="inter-calcul-item">
+    
+<p className="title"><Link className="tip-auton-01">Plus d'information
+
+<div className="tooltip-styling-auton1">
+   Si vous habitez en ville il est possible que le camion se gare dans la rue.Selon votre commune une autorisation de stationnement est peut être nécessaire.
+        </div>
+
+</Link>
+</p></div>
 
 <div className="inter-calcul-item  check-yes-no">
     
@@ -666,7 +702,7 @@ Faites-nous part de tout ce qui est important pour vous. Ces informations seront
  
 <div className="inter-calcul-item">
 
-<input type="text"  className="input-commantaires" />
+<textarea type="text"  className="input-commantaires" />
 
 
 </div>
@@ -680,7 +716,7 @@ Faites-nous part de tout ce qui est important pour vous. Ces informations seront
 
 <div className="calcul-montant">
 
-<p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
+<p>DÉMÉNAGEMENT<br/></p>
 
 <div className="total-formulaire">
     <div>Total: {total} €</div>

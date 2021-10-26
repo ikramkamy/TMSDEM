@@ -31,7 +31,6 @@
     border: 1px solid lightgrey;
     border-radius: 10px 10px 10px 10px ;
     display: flex;
-    
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
@@ -59,45 +58,53 @@ display: none;
     align-items: center;
     text-align: center;
 }
+.marge{
+    margin: 15px;
+}
 .quantite{
-    background-color: lightgrey;
-  width: 100%;
+    
+    width: 100%;
     height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    background-color: lightgray;
+    
    
 }
 .quantite:hover
     .Item-Icons, .wrap-quantite{
-color: white;
-border: 1px solid white;
+    color: black;
+
     }
 .quantite:hover{
     background-color:#2c216f;
 }
 
 .Item-Icons{
-
-border: 1px solid black;
-border-radius: 50%;
-font-size: 1.3em;
-color: black;
+font-size: 1em;
 cursor: pointer;
 font-weight: 600;
-margin: 20px;
+
 
 }
+.wrap-icon-item{
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+}
 .wrap-quantite{
-
-
     border:  1px solid lightgrey;
     height: 25px;
     width: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 /************************************************STYLING SHOPING CART***********************************************/
 .modal-cart{
@@ -159,6 +166,7 @@ margin: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 

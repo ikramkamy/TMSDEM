@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import  './carton.css';
-import { FaArrowCircleLeft, FaPlus, FaTrash} from 'react-icons/fa';
+import { FaArrowCircleLeft, FaMinus, FaPlus, FaTrash} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 const Carton=(props)=>{
   const{showVolum}=props;
@@ -116,16 +116,16 @@ return(<div className="carton">
                 <div className="la-piéce-head">
                 <FaTrash className="icon-colum-item" onClick={DeleteVolumeItem}/>
                 <p>{option.element}</p>
-                <p>{option.id}</p>
+               
                 </div>
-                
-               <FaPlus   onClick={handeladd2}/>
+               <div></div> 
+               <FaPlus className="icon-colum-item" onClick={handeladd2}/>
                 <select className="select-inter-piéce" name="name" value={elem.name} onChange={handelcklick2} style={{marginLeft:"50px"}}>
                 <option value="selectioner" >selectioner</option>
                 <option value="0.75 table" label="table">Table</option>
                 <option value="1 lit" label="lit">Lit</option>
-
-                </select>
+               </select>
+               <FaMinus className="icon-colum-item" onClick={handeladd2}/>
 {input.tab?.map((e)=><div style={{color:"red"}}>{e.name}    </div>)}
 
                 </div>

@@ -9,12 +9,13 @@ return(<div className="wrap-Item">
 <div className="Item-Ecommerce">{props.name}</div>
 <div className="Item-Ecommerce">{props.dimmension}</div>
 <div className=" description-carton">{props.description}</div>
-<div className="Item-Ecommerce quantite">
-    <FaMinus onClick={minus} className="Item-Icons" style={{marginLeft:"15px"}}/><
-        
-div className="wrap-quantite">{props.quantite}</div>
-<FaPlus  onClick={add} className="Item-Icons" style={{marginRight:"15px"}}/></div>
 
-    </div>)
+<div className="Item-Ecommerce quantite">
+<div className="wrap-icon-item marge"><FaMinus onClick={minus} className="Item-Icons"/></div>
+    <div className="wrap-quantite marge">{props.quantite}</div>
+<div className="wrap-icon-item marge"><FaPlus  onClick={add} className="Item-Icons"/></div>
+
+</div>
+</div>)
 }
 export default Item;
