@@ -208,12 +208,10 @@ numetage:0,
 
 })
 
-
-
 /************************************************************************************LA SOMME TOTALE****************************************************************************** */
 const [total,setTotal]=useState(120)
 useEffect(()=>{
-setTotal(120+Number(numetage)*(30-valassenseur)+Number(mnt)*1+Number((Math.floor(valdistance/10)*40))+(simple*40)*tarifRMNTG)
+setTotal(120+Number(numetage)*(30-valassenseur)+Number(mnt)*1+Number((Math.floor(valdistance/10)*40))+(simple*40)*tarifRMNTG+(moy*60)*tarifRMNTG+(complique*80)*tarifRMNTG)
 },[varchange])
 /*************************************************VOIR LES OBJETS LOURD*******************************/
 const [lourd,setLourd]=useState(true);
@@ -232,6 +230,39 @@ const handelfrigo=()=>{
 }
 
 /***************************************************************************************************/
+
+/*****************************************SCROLL*************************************/ 
+const [isVisible,setIsVisible]=useState(false)
+const listenToScroll = () => {
+    let heightToHideFrom = 50;
+    const winScroll = document.body.scrollTop || 
+        document.documentElement.scrollTop;
+       
+    if (winScroll > heightToHideFrom) { 
+        alert("we are hete");
+        const montant = document.querySelector(".calcul-montant");
+        montant.style.position="absolute" ; 
+       
+         setIsVisible(true);
+    } else {
+         setIsVisible(false);
+    }  
+  };
+  /*
+useEffect(()=>{
+    listenToScroll()   
+})
+*/
+/**************************************************calcult de cubage******************************************** */
+
+const[cubage,setCubage]=useState(0);
+const handelCubage=(data)=>{
+    setCubage(data);
+    console.log("we are getting data from chlidern",data)
+}
+
+
+
 return(
 
 <div className="principal-formulaire">
@@ -446,7 +477,7 @@ Nos conseillers sont à votre disposition.</div>
 
 </div>
 
-{volum &&(<Carton showVolum={showVolum}/>)}
+{volum &&(<Carton showVolum={showVolum}  handelCubage={handelCubage}/>)}
 
 
 
@@ -525,7 +556,7 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="title-RMNTG">Simple</div> 
 <div className="content-RMNTG">
 <div className="text-RMNTG">Bureau simple, commode de taille moyenne, étagère simple, lit simple, lit bébé, placard (décrochage), table...</div>
-<input className="input-RMNTG" name="simple" value={simple} onChange={handesimple}/>
+<input type="Number" min="0" className="input-RMNTG" name="simple" value={simple} onChange={handesimple}/>
 </div>
 
     </div>
@@ -536,7 +567,7 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="title-RMNTG">Moyen</div> 
 <div className="content-RMNTG">
 <div className="text-RMNTG">Armoire 2 portes, buffet plusieurs blocs, bureau d'angle, canapé, etagère, grande commode, lit mezzanine simple, living plusieurs blocs...</div>
-<input className="input-RMNTG" name={moy} value={moy} onChange={handelmoy}/>
+<input  type="Number" min="0" className="input-RMNTG" name={moy} value={moy} onChange={handelmoy}/>
 </div>
 
     </div>
@@ -547,7 +578,7 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="title-RMNTG">Compliquée</div> 
 <div className="content-RMNTG">
 <div className="text-RMNTG">Armoire 3 portes et plus, armoire pont, armoire lit, bibliothèque, buffet, bahut, grande, vitrine, lit mezzanine 2 personnes, lit combiné avec bureau, living, vaisselier</div>
-<input className="input-RMNTG" name={complique} value={complique} onChange={handelComplique}/>
+<input  min="0" type="Number" className="input-RMNTG" name={complique} value={complique} onChange={handelComplique}/>
 </div>
 
     </div>
@@ -582,7 +613,7 @@ et le remontage de<br/> votre mobilier ?</p>
     </div>   
     
     
-    {showecommerce && (<Ecommerce/>)}
+    {showecommerce && (<Ecommerce />)}
     
     
     </div> 
@@ -603,10 +634,11 @@ et le remontage de<br/> votre mobilier ?</p>
 <div className="width90-2-center">
 <p className="width90-2">
 Quelques exemples :
+<br/>
 <ul>
-<li>1-garde-meubles/stockage,</li>
-<li>2-livrer ou récupérer du mobilier à une autre adresse,</li>
-<li>3-transporter un objet spécifique (très lourd, très fragile, ou de grande valeur),</li>
+<li style={{marginLeft:"20px"}}>1- garde-meubles/stockage,</li>
+<li style={{marginLeft:"20px"}}>2- livrer ou récupérer du mobilier à une autre adresse,</li>
+<li style={{marginLeft:"20px"}}>3- transporter un objet spécifique (très lourd, très fragile, ou de grande valeur),</li>
 </ul>
 <br/>
 Nous reviendrons vers vous avec un tarif dans un délai de 24h00 ouvrées. Pensez à nous laisser vos coordonnées (en créant votre compte) afin que nous puissions vous contacter si nous avons des questions.
@@ -651,10 +683,10 @@ Faites-nous part de tout ce qui est important pour vous. Ces informations seront
 <p>DÉMÉNAGEMENT CLASSIQUE <br/> 695 km · 25 m3</p>
 
 <div className="total-formulaire">
-    <div>Total: {total} £</div>
+    <div>Total: {total} €</div>
 
 </div> 
-<p>voir les variables et la formule:</p>
+{/*<p>voir les variables et la formule:</p>
 
 etage:{numetage} <br/>
 la distace:{valdistance} <br/>
@@ -662,7 +694,7 @@ le résultat de la division euclidienne:{Math.floor(valdistance/10)} <br/>
 le monte-meuble:{mnt}<br/>
 moy:{moy}<br/>
 simple:{simple}<br/>
-complique:{complique}<br/>
+complique:{complique}<br/>*/}
 </div>
 <footer className="footer-formulaire">©2021 TMSDEM</footer>
     </div>)

@@ -4,6 +4,7 @@
     background-color: white;
     display: flex;
     justify-content: space-around;
+    margin-top: 30px;
 }
 .calcul-carton{
     display: flex;
@@ -11,7 +12,7 @@
     flex-direction: column;
     width: 50%;
     padding: 10px;
-    border: 1px solid red;
+   
 }
 .img-carton-size{
     height: 100px;
@@ -107,14 +108,24 @@ margin-bottom: 50px;
 width: 80%;
 }
 .element-volum{
-    width: 50%;
-    border: 1px solid lightgray;
+    width: 80%;
+    
     border-radius: 5px 5px 5px 5px ;
-    height: 30px;
+    
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 25px;
+    background-color:rgb(243,243,243); 
+    border: 1px solid red;
+}
+.select-inter-piéce{
+
+width: 80%;
+margin-bottom: 10px;
+
+
 }
 .add-box{
     
@@ -122,5 +133,18 @@ width: 80%;
    
 }
 .icon-colum-item{
-    margin-right: 10px;
+    
+}
+.la-piéce-head{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px hidden blue;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+}
+.select-la-piece{
+    width: 80%;
 }

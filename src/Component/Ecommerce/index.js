@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import  './e-commerce.css';
-import { FaArrowCircleLeft, FaTrash} from 'react-icons/fa';
+import { FaArrowCircleLeft, FaLock, FaMinus, FaPlus, FaTrash} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Item from './ItemWrap';
 const Ecommerce=(props)=>{
+  
   const[produit,setProduit]=useState([
 {name:"carton livre",
 prix:"20 £",
@@ -140,43 +141,96 @@ const[produit3,setProduit3]=useState([
   },
 
 ])
-
-  
 const [cart,setCart]=useState([]);
+const [show,setShow]=useState(false);
+/*
 const add=(e)=>{
   setCart(...{e})
 }
-console.log("CART",cart)
+*/
+const handelshow=(e)=>{
+  setCart([...cart,e]);
+  setShow(true);
+  e.quantite=e.quantite+1
+  /*
+for(let i=0;i<cart.length;i++){
+  setCart([...cart,e]);
+if(cart[i]===e.name){
+  cart[i].quantite=cart[i].quantite+1;
+}else{
+setCart([...cart,e]);
+
+}
+}
+
+
+*/
+
+
+  
+}
+console.log("CART",cart);
+const [quantite,setQuantite]=useState(0)
+const plus=()=>{
+  setQuantite(quantite+1) ;
+}
+const minus=()=>{
+  setQuantite(quantite-1)  
+}
+
 return(<div className="wrap-ecommerce">
 <h1 className="product-titles">Pour le non-fragile</h1>
 <h3 className="product-titles">Vêtements, livres, ustensiles de cuisine</h3>
-<div className="carton-cathegorie-bloc">{produit.map((e)=><Item add={(()=>add(e))} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">
+{produit.map((e)=>
+<Item add={()=>handelshow(e)} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description} plus={plus} minus={minus}/>)}</div>
 <div className="sepa-catégorie-cartons">JE SOUHAITE QUE LE DÉMÉNAGEUR EMBALLE MES CARTONS NON FRAGILES</div>
 
 <h1 className="product-titles">Pour le fragile</h1>
 <h3 className="product-titles">Vaisselle, bouteilles, bibelots.</h3>
-<div className="carton-cathegorie-bloc">{produit2.map((e)=><Item add={(()=>add(e))}  url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit2.map((e)=><Item add={()=>handelshow(e)} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
 <div className="sepa-catégorie-cartons">JE SOUHAITE QUE LE DÉMÉNAGEUR EMBALLE MES CARTONS FRAGILES</div>
 
 
 <h1 className="product-titles">Pour les vêtements sur cintre</h1>
-<div className="carton-cathegorie-bloc">{produit3.map((e)=><Item  add={(()=>add(e))} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit3.map((e)=><Item  add={()=>handelshow(e)}  url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
 
 
 <h1 className="product-titles">Autres fournitures</h1>
-<div className="carton-cathegorie-bloc">{produit4.map((e)=><Item add={(()=>add(e))} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+<div className="carton-cathegorie-bloc">{produit4.map((e)=><Item  add={()=>handelshow(e)} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description}/>)}</div>
+  
+  
+  {show &&(
+  <div className="modal-cart">
+  <div className="cart">
+ 
+ <div className="cart-title">
+   <h3>Mon panier</h3>
+ <div  onClick={()=>setShow(false)}>< FaLock className="close-cart"/> </div>
+ </div>
+     {cart.map((e)=><div className="row">
+     <div className="cart-item">{e.name}</div>
+     <img src={e.url} style={{height:"50px",width:"50px"}}/>
+     <div className="cart-item">{e.prix}</div>
+     <div className="cart-item quantite-cart">
+     <FaMinus  className="Item-Icons"/><p> {e.quantite}</p>
+     <FaPlus  className="Item-Icons"/></div>
+  </div>)} 
+  </div> 
     
-    <div className="cart">
-      La liste d'achat:
-      {/*cart?.map((e)=><div className="row">
-<div>{e.name}</div>
-<div>{e.quantite}</div>
-<div>{e.prix}</div>
-<div></div>
+  </div>)}   
 
-</div>)*/}
-      
-       Mon panier</div>
+  
+  
+  
+  
+ 
+ 
+
+   
+
+
+    
     
     </div>)
 }

@@ -29,14 +29,14 @@
     flex-direction: column;
     align-items:flex-start;
     justify-content: center;
-    width: 70%;
+    width: 80%;
 }
 .calcul-bloc{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 80%;
     height: auto;
  
     background-color: white;
@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 25%;
     height: 80vh;
     background-color: white;
     border: 1px solid lightgray;
@@ -229,7 +229,6 @@ border:  1px hidden red;
 /*****************************************VOLUM STYLING***************************************************/
 .principale-titles{
     font-size: 24px;
-  
 }
 .text-fomulaire{
     
@@ -319,27 +318,25 @@ input{
     text-align: center;
     border-radius: 5px 5px 5px 5px;
     width: 20%;
-    
-    border: 1px solid red;
-
 }
 .btn-formule:hover{
     background-color:#514c74 ;
 }
 .width90{
-    width: 70%;
+    width: 80%;
     margin-top: 50px;
     margin-bottom: 50px;
     font-size: 1.7em;
 }
 .width90-2{
-    width: 50%;
+    width: 60%;
   
     margin-bottom: 50px;  
 }
 .width90-2-center{
-    width: 70%;
+    width: 80%;
     display: flex;
+  
 }
 .input-commantaires{
     height: 250px;
@@ -347,7 +344,7 @@ input{
 }
 .center-comments{
     border: 1px hidden red;
- 
+ width: 70%;
     padding-left: 5%;
 }
 input{
@@ -378,6 +375,7 @@ select{
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 /*****************************************RESPONSIVR*******************************************/
 @media screen and (max-width:1000px) {
