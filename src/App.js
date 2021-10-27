@@ -6,22 +6,21 @@ import Devis from './Component/Formulaire';
 import Formulefinale from './Component/Formulaire/Formule';
 import NavFomule from './Component/navFomule';
 import Ecommerce from './Component/Ecommerce';
+import Home from './Component/Home';
+import NavBar from './Component/navBar/NavBar'
+import Presentation from './Component/Presentation';
+import Service from './Component/Service';
+import Footer from './Component/footer/Footer';
 function App() {
+  const sendPrixcarton=(data)=>{
+    console.log("cart")
+}
   return (
     <div className="App">
       <Router>
-   
-    
    <Switch>
      <Route exact path="/">
-      <div className="navv">
-   
- <h1>Choisissez la formule qui vous convient:  </h1>
-   
-   <span  className="choix"><Link to="/depart">Formule Zen  </Link></span>
-   <span  className="choix"><Link to="/chrono">Formule chrono  </Link></span>
-   </div>
-   
+     < Home/>
    
      </Route>
    <Route exact path="/depart">
@@ -32,11 +31,23 @@ function App() {
    
      
    </Route>
-  l'autre formule
-   <Route exact path="/E-commerce" component={Ecommerce} />
-   
-   
-   
+  
+<Route exact path="/e-commerce">
+<NavBar/>
+  <Ecommerce  sendPrixcarton={sendPrixcarton} />
+<Footer/>
+
+   </Route>
+  
+   <Route exact path="/services" >
+   <NavBar/>
+     <Service/>
+     
+   </Route>
+   <Route exact path="/soto">  
+   <NavFomule/>
+     <Formulefinale/>
+   </Route>
    </Switch>
    
    

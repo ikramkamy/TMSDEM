@@ -247,7 +247,7 @@ Number(mnt2)*1+
 Number((Math.floor(valdistance/10)*40))+
 Number((Math.floor(valdistance2/10)*40))+
 (simple*40)*tarifRMNTG+(moy*60)*tarifRMNTG+
-(complique*80)*tarifRMNTG)
+pricart+(complique*80)*tarifRMNTG)
 },[varchange])
 /*************************************************VOIR LES OBJETS LOURD*******************************/
 const [lourd,setLourd]=useState(true);
@@ -277,8 +277,12 @@ const handelCubage=(data)=>{
     console.log("we are getting data from chlidern",data)
 }
 
-
-
+/*****************************************************Calcul pri carton**************************************** */
+const [pricart,setPricart]=useState(0);
+const sendPrixcarton=(data)=>{
+    setPricart(data);
+    setVarchange(varchange+1);
+}
 return(
 
 <div className="principal-formulaire">
@@ -649,7 +653,7 @@ et le remontage de<br/> votre mobilier ?</p>
     </div>   
     
     
-    {showecommerce && (<Ecommerce />)}
+    {showecommerce && (<Ecommerce  sendPrixcarton={sendPrixcarton}/>)}
     
     
     </div> 

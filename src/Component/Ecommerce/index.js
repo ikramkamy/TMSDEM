@@ -4,12 +4,13 @@ import { FaArrowCircleLeft, FaLock, FaMinus, FaPlus, FaTrash} from 'react-icons/
 import { Link } from 'react-router-dom';
 import Item from './ItemWrap';
 const Ecommerce=(props)=>{
-  const [q1,setQ1]=useState(3);
+const{sendPrixcarton}=props;
+const[prixcarton,setPrixcarton]=useState(0);
   const[produit,setProduit]=useState([
 {name:"carton livre",
 prix:"20 £",
 dimmension:"35 x 27,5 x 30 cm",
-quantite:q1,
+quantite:0,
 description:"3 à 4 cartons par mètre linéaire de livres",
 url:"/images/cartonLivre.jpg"
 },
@@ -148,42 +149,46 @@ const add=(e)=>{
   setCart(...{e})
 }
 */
+
 const handelshow=(e)=>{
   setCart([...cart,e]);
-  setShow(true);
+  //setShow(true);
   e.quantite=e.quantite+1
-  /*
-for(let i=0;i<cart.length;i++){
-  setCart([...cart,e]);
-if(cart[i]===e.name){
-  cart[i].quantite=cart[i].quantite+1;
-}else{
-setCart([...cart,e]);
-
+  setPrixcarton(prixcarton+Number(e.prix.split(" ")[0]))
 }
+const handelminus=(e)=>{
+  if(e.quantite==0){
+    alert("la quantité est 0")
+  }else{ 
+    
+    //setShow(true);
+    e.quantite=e.quantite-1
+    setPrixcarton(prixcarton-Number(e.prix.split(" ")[0]))
+  }
+ 
 }
 
+useEffect(()=>{
+  sendPrixcarton(prixcarton);
+  console.log("prixcarton",prixcarton)
 
-*/
-
-
-  
-}
+})
 console.log("CART",cart);
 const [quantite,setQuantite]=useState(0)
 const plus=()=>{
   setQuantite(quantite+1) ;
 }
-const minus=()=>{
-  setQuantite(quantite-1)  
-}
+
 /********************************************La somme des cartons****************************************/
 return(<div className="wrap-ecommerce">
 <h1 className="product-titles">Pour le non-fragile</h1>
 <h3 className="product-titles">Vêtements, livres, ustensiles de cuisine</h3>
 <div className="carton-cathegorie-bloc">
 {produit.map((e)=>
-<Item add={()=>handelshow(e)} url={e.url} name={e.name} prix={e.prix} dimmension={e.dimmension} quantite={e.quantite} description={e.description} plus={plus} minus={minus}/>)}</div>
+<Item add={()=>handelshow(e)} 
+url={e.url} name={e.name} prix={e.prix} 
+dimmension={e.dimmension} quantite={e.quantite} 
+description={e.description} plus={plus}  minus={()=>handelminus(e)}/>)}</div>
 <div className="sepa-catégorie-cartons">JE SOUHAITE QUE LE DÉMÉNAGEUR EMBALLE MES CARTONS NON FRAGILES</div>
 
 <h1 className="product-titles">Pour le fragile</h1>
