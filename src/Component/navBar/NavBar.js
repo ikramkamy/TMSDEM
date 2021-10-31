@@ -66,10 +66,10 @@ export default function NavBar() {
 
 <div className="item"><Link to="/">Accueil</Link> </div>
 
-<div className="item"><Link to="/">TMS-DEM</Link></div>
+<div className="item"><Link to="/presentation">TMS-DEM</Link></div>
 <div className="item"><Link to="/services">Nos services</Link>  </div>
 <div className="item"><Link to="/e-commerce">Boutique</Link> </div>
-<div className="item"><Link to="/">Contact</Link>  </div>
+<div className="item"><Link to="">Contact</Link>  </div>
 <div className="btn-devis largeMenu">
   <button> Demander un devis</button>
 </div>
@@ -81,16 +81,13 @@ export default function NavBar() {
 
 </div>
  </div>
-
-   
-
-  { fade && <div className="navSmallScreen">
+{fade && <div className="navSmallScreen">
   <div className="item"><Link to="/">Accueil</Link> </div>
 
-<div className="item"><Link to="/">TMS-DEM</Link></div>
+<div className="item"><Link to="/presentation">TMS-DEM</Link></div>
 <div className="item"><Link to="/services">Nos services</Link>  </div>
 <div className="item"><Link to="/e-commerce">Boutique</Link> </div>
-<div className="item"><Link to="/">Contact</Link>  </div>
+<div className="item"><Link to="">Contact</Link>  </div>
 <div className="btn-devis">
   <button> Demander un devis</button>
 </div>

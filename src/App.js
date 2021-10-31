@@ -48,6 +48,12 @@ function App() {
    <NavFomule/>
      <Formulefinale/>
    </Route>
+
+   <Route exact path="/presentation" >
+   <NavBar/>
+     <Presentation/>
+  
+</Route>
    </Switch>
    
    

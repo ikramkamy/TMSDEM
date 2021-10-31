@@ -3,90 +3,60 @@ import  './carton.css';
 import { FaArrowCircleLeft, FaMinus, FaPlus, FaTrash} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 const Carton=(props)=>{
-  const{showVolum}=props;
-  const {handelCubage}=props;
-    const [input,setInput]=useState({
-        element:"",
-        prix:"",
-        id:"",
-        tab:[]
-    })
-const [tab,setTab]=useState([]);
-const handelClick=(event)=>{
-    const {name,value}=event.target;
-    setInput(prevInput=>{
-      return  { 
-        ...prevInput,
-        [name]:value
-    
-      }
-    })
-   }
-const [elem,setElem]=useState({
+const{showVolum}=props;
+const {handelCubage}=props;
+const [i,setI]=useState("0");
+const [room,setRoom]=useState([]);
+
+const [input,setInput]=useState({
   name:"",
-  cubage:"",
-  index:""
+  tab:[],
+  id:""
+})
+const handelroom=(event)=>{
+const n=event.target.value;
+ setInput({
+name:n,
+ })
+}
+  console.log("input",input)
+
+const addtoroom=()=>{
+setRoom([...room,input]);
+}
+console.log("Room",room);
+const [input2,setInput2]=useState({
+  name:"",
+  volume:0,
+  quantite:0
 });
-const [tab2,setTab2]=useState([]);
-const handelcklick2=(event)=>{
-  const {name,value}=event.target;
-  
-setElem(prevInput=>{
-      return  { 
-        ...prevInput,
-        [name]:value
-      }
-    })
+/************************************** */
+const handelelem=(event)=>{
+  const n=event.target.value;
+  setInput2({
+ name:n,
+  })
+}
+console.log("input",input2)
+//const [roomelem,setRoomelem]=useState([])
+const [tableau,setTableau]=useState([]);
+const addelem=(e)=>{
+  e.id=e.name;
+  //e.tab=[{name:e.name}]
+  //console.log("sible",e)
+  //tableau.push(input2);
+  //e.tab=tableau;
+}
+//console.log("element de cubage",roomelem)
+console.log("element de cubage in romm",input)
+console.log("element de cubage in romm",room);
 
+/*
+const [vari,setVari]=useState();
+const handelroom=()=>{
+const selectval=document.querySelector('#select')
 }
-const handeladd=()=>{
-    setTab([...tab,input])
-}
-
-const handeladd2=(e)=>{
-  //setTab2([...tab2,elem])
-  //console.log("ici tab 2",tab2)
-tab[0].tab=[...tab[0].tab,elem];
-  console.log("input tab",tab[0].tab)
-}
-console.log("tableau de la piéce",tab)
-const DeleteVolumeItem=(e)=>{
-var index = tab.indexOf(e.target.value)
-tab.splice(index, 1)
-console.log("we are deleting item from tablea")
-}
-const [itemcubage,setItemCubage]=useState([
-{
-  name:"tabel",
-  cubage:"1",
-  id:1,
-},{
-  name:"lit",
-  cubage:"0.75",
-  id:1,
-},
-{
-  name:"tabel",
-  cubage:"1",
-  id:1,
-}
-])
-const [net,setNet]=useState(0);
-
-useEffect(()=>{
-  handelCubage(net);
-  console.log(net)
-})
-/************************************************CALCUL DE VOLUME*********************************************** */
-useEffect(()=>{
-  let t=0;
-  tab?.map((e)=>
-  t=t+Number(e.tab.map((ele)=>t=t+Number(ele.name.split(" ")[0]))))
-  console.log("le volume",t);
-  setNet(t)
- 
-})
-
+*/
 return(<div className="carton">
 <div className="calcul-carton">
 <div className="text-carton">
@@ -101,50 +71,53 @@ return(<div className="carton">
 </div>*/}
 
 </div>
-<div className=" margin-top" onClick={handeladd}>Ajouter</div>
+<div className=" btn-add-room"  onClick={addtoroom}>Ajouter une piéce</div>
 <div className="add-box">
-<select className="select-la-piece" onChange={handelClick} name="element" value={input.element}>
+<select className="select-la-piece" name="name" id="select" value={input.name} key={i} onChange={handelroom}>
                 <option value="selectionner">selectionner</option>
-                <option value="chambre">Chambre</option>
-                <option value="Jardin">Jardin</option>
+                <option value="chambre ">Chambre</option>
+                <option value="Jardin" >Jardin</option>
+                <option value="salon" >salon</option>
+                <option value="cuisine">cuisine</option>
+</select>
 
-                </select>
+</div>
+la listes des piéces
+{room?.map((e)=>
+<div className="wrap-room">
+  {e.name}
+
+  <select className="select-la-piece" name="elm" value={e.tab} onChange={handelelem} >
+                <option value="selectionner">selectionner</option>
+                <option value="table">table</option>
+                <option value="chaise" >chaise</option>
+                <option value="lit" >lit</option>
+                <option value="carton">carton</option>
+</select>
+  <div className="wrap-elems-room">
+  <button  onClick={()=>addelem(e)}>ajouter element</button>
+    {e.tab?.map((p)=><div >
+      {p.name}
+      <button  onClick={addelem}>ajouter element</button>
+    </div>)}
 
 
-{tab?.map((option) => (
-              <div className="element-volum" >
-                <div className="la-piéce-head">
-                <FaTrash className="icon-colum-item" onClick={DeleteVolumeItem}/>
-                <p>{option.element}</p>
-               
-                </div>
-               <div></div> 
-               <FaPlus className="icon-colum-item" onClick={handeladd2}/>
-                <select className="select-inter-piéce" name="name" value={elem.name} onChange={handelcklick2} style={{marginLeft:"50px"}}>
-                <option value="selectioner" >selectioner</option>
-                <option value="0.75 table" label="table">Table</option>
-                <option value="1 lit" label="lit">Lit</option>
-               </select>
-               <FaMinus className="icon-colum-item" onClick={handeladd2}/>
-{input.tab?.map((e)=><div style={{color:"red"}}>{e.name}    </div>)}
-
-                </div>
-            ))}
 </div>
 
+</div>)}
 
 </div>
 
 <div className="Total-carton">
 <h1>Votre volume total</h1>
 <div className="resultat-volume">
-<p>Carton</p>
-<div>{net} m3</div>
+<div>Carton</div>
+<div>00.00 m3</div>
 </div>
 <h3>Nombre de carton(s) : 0</h3>
-<h4>{net}m3</h4>
+<h3>00.00m3</h3>
 <div className="btn-carton">Continue</div>
-<div className="btn-carton" onClick={showVolum}>Retour</div>
+<div className="btn-carton" >Retour</div>
 </div>
 
     </div>)
