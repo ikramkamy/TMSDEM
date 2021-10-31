@@ -162,8 +162,24 @@ margin-bottom: 10px;
 /****************************ROOM STYLE*******************************/
 .wrap-room{
     display: flex; 
-    justify-content: space-between;margin-bottom: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    border:  1px solid hotpink;
 }
 .wrap-elems-room{
     border: 1px solid red;
+    width: 50%;
+}
+.wrap-room select{
+    border: 1px solid green;
+    width: 100%;
+}
+.title-wrap-room{
+    width: 90%;
+    display: flex;
+}
+.btns-wrap-room{
+    display: flex;
 }
