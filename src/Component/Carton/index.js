@@ -44,8 +44,8 @@ const addelem=(e)=>{
   e.id=e.name;
   //e.tab=[{name:e.name}]
   //console.log("sible",e)
-  //tableau.push(input2);
-  //e.tab=tableau;
+  tableau.push(input2);
+  e.tab=tableau;
 }
 //console.log("element de cubage",roomelem)
 console.log("element de cubage in romm",input)
@@ -98,7 +98,7 @@ la listes des piéces
   <button  onClick={()=>addelem(e)}>ajouter element</button>
     {e.tab?.map((p)=><div >
       {p.name}
-      <button  onClick={addelem}>ajouter element</button>
+      <button  onClick={()=>addelem(e)}>ajouter element</button>
     </div>)}
 
 
