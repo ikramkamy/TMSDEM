@@ -7,7 +7,8 @@ const{showVolum}=props;
 const {handelCubage}=props;
 const [i,setI]=useState("0");
 const [room,setRoom]=useState([]);
-
+const [tableau,setTableau]=useState([]);
+const [control,setControl]=useState(false);
 const [input,setInput]=useState({
   name:"",
   tab:[],
@@ -19,7 +20,7 @@ const n=event.target.value;
 name:n,
  })
 }
-  console.log("input",input)
+console.log("input",input)
 
 const addtoroom=()=>{
 setRoom([...room,input]);
@@ -30,6 +31,28 @@ const [input2,setInput2]=useState({
   volume:0,
   quantite:0
 });
+/*************************************************/
+const addtableau=(e)=>{
+  //e.tab=tableau;
+  setTableau([]);
+}
+
+const addelem=(e)=>{
+  e.id=e.name;
+  //e.tab=[{name:e.name}]
+  //console.log("sible",e)
+ // setTableau([...tableau,input2]);
+  //setTableau(e.tab);
+  //e.tab=[...tableau,input2];
+  e.tab.push(input2);
+//setControl(!control)
+}
+//console.log("element de cubage",roomelem)
+console.log("element de cubage in romm",input);
+console.log("element de cubage in romm",room);
+console.log("le tableau des element de cubage",tableau);
+
+
 /************************************** */
 const handelelem=(event)=>{
   const n=event.target.value;
@@ -39,18 +62,6 @@ const handelelem=(event)=>{
 }
 console.log("input",input2)
 //const [roomelem,setRoomelem]=useState([])
-const [tableau,setTableau]=useState([]);
-const addelem=(e)=>{
-  e.id=e.name;
-  //e.tab=[{name:e.name}]
-  //console.log("sible",e)
-  tableau.push(input2);
-  e.tab=tableau;
-}
-//console.log("element de cubage",roomelem)
-console.log("element de cubage in romm",input)
-console.log("element de cubage in romm",room);
-
 /*
 const [vari,setVari]=useState();
 const handelroom=()=>{
@@ -80,14 +91,12 @@ return(<div className="carton">
                 <option value="salon" >salon</option>
                 <option value="cuisine">cuisine</option>
 </select>
-
 </div>
 la listes des piéces
 {room?.map((e)=>
 <div className="wrap-room">
-  {e.name}
-
-  <select className="select-la-piece" name="elm" value={e.tab} onChange={handelelem} >
+ <div className="title-wrap-room">{e.name}</div> 
+<select className="select-la-piece" name="elm" value={e.tab} onChange={handelelem}  >
                 <option value="selectionner">selectionner</option>
                 <option value="table">table</option>
                 <option value="chaise" >chaise</option>
@@ -95,10 +104,13 @@ la listes des piéces
                 <option value="carton">carton</option>
 </select>
   <div className="wrap-elems-room">
+    <div className="btns-wrap-room">
   <button  onClick={()=>addelem(e)}>ajouter element</button>
+  <button  onClick={()=>addtableau(e)}>ajouter tableau</button>
+  </div>
     {e.tab?.map((p)=><div >
       {p.name}
-      <button  onClick={()=>addelem(e)}>ajouter element</button>
+      <button  >ajouter element</button>
     </div>)}
 
 

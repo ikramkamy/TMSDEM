@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import Carton from '../Carton';
 import  {MDBInput}  from 'mdbreact';
 import Ecommerce from '../Ecommerce';
-import ReactTooltip from 'react-tooltip';
+//simport ReactTooltip from 'react-tooltip';
 
 const Formulefinale=()=>{
 const[showecommerce,setShowecommerce]=useState(false);
